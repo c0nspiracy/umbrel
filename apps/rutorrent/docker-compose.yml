@@ -5,25 +5,12 @@ services:
     image: crazymax/rtorrent-rutorrent:latest
     restart: on-failure
     stop_grace_period: 1m
-    expose:
-      - ${RT_DHT_PORT}/udp
-      - ${XMLRPC_PORT}
-      - ${RUTORRENT_PORT}
-      - ${WEBDAV_PORT}
-      - ${RT_INC_PORT}
     ports:
-      - target: ${RT_DHT_PORT}
-        published: ${RT_DHT_PORT}
-        protocol: udp
-      - target: ${RUTORRENT_PORT}
-        published: ${RUTORRENT_PORT}
-        protocol: tcp
-      - target: ${WEBDAV_PORT}
-        published: ${WEBDAV_PORT}
-        protocol: tcp
-      - target: ${RT_INC_PORT}
-        published: ${RT_INC_PORT}
-        protocol: tcp
+      - 6881:6881/udp
+      - 8000:8000
+      - 8080:8080
+      - 9000:9000
+      - 50000:50000
     env_file:
       - rutorrent.env_file
     volumes:
